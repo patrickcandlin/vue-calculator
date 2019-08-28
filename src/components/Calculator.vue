@@ -4,25 +4,25 @@
       <div id="screen">{{ screenValue }}</div>
     </div>
 
-    <div   id="buttons-container">
-      <div @click="buttonPress" class="buttons">
-        <span class="operator" id="clear">C</span>
-        <span class="operator">÷</span>
-        <span class="operator">x</span>
-        <span>7</span>
-        <span>8</span>
-        <span>9</span>
-        <span class="operator">-</span>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span class="operator">+</span>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span class="operator" id="equals">=</span>
+    <div id="buttons-container">
+      <div class="buttons">
+        <span @click="clearPressed"  class="operator" id="clear">C</span>
+        <span @click="dividePressed" class="operator">÷</span>
+        <span @click="operatorPressed" class="operator">*</span>
+        <span @click='numberPressed'>7</span>
+        <span @click='numberPressed'>8</span>
+        <span @click='numberPressed'>9</span>
+        <span @click="operatorPressed" class="operator">-</span>
+        <span @click='numberPressed'>4</span>
+        <span @click='numberPressed'>5</span>
+        <span @click='numberPressed'>6</span>
+        <span @click="operatorPressed" class="operator">+</span>
+        <span @click='numberPressed'>1</span>
+        <span @click='numberPressed'>2</span>
+        <span @click='numberPressed'>3</span>
+        <span @click='equalPressed' class="operator" id="equals">=</span>
         <div class="l-row">
-          <span id="zero">0</span>
+          <span @click='numberPressed' id="zero">0</span>
         </div>
       </div>
     </div>
@@ -38,17 +38,24 @@ export default {
     }
   },
   methods: {
-    buttoPress: function() {
-      if(event.target.innerText.length == 1){
-        if(event.target.innerText == "÷"){
-          this.screenValue += "/"
-        }if(event.target.innerText == "="){
-          this.screenValue = `${eval(this.screenValue)}`
-        }if(event.target.innerText == "C"){
-          this.screenValue = ""
-        }else{this.screenValue += event.target.innerText}
-      }
-    }
+    numberPressed: function() {
+      this.screenValue += event.target.innerText
+    },
+    operatorPressed: function(){
+      this.screenValue += event.target.innerText
+    },
+    dividePressed: function() {
+      this.screenValue += "/"
+    },
+    clearPressed: function() {
+      this.screenValue = ""
+    },
+    equalPressed: function() {
+      this.screenValue = `${eval(this.screenValue)}`
+    },
+    // checkOperator: function() {
+
+    // }
   }
 }
 
