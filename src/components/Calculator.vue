@@ -34,7 +34,7 @@ export default {
   name: 'Calculator',
   data() {
     return{
-      screenValue: ""
+      screenValue: "",
     }
   },
   methods: {
@@ -42,10 +42,14 @@ export default {
       this.screenValue += event.target.innerText
     },
     operatorPressed: function(){
-      this.screenValue += event.target.innerText
+      if(!"*/+-".includes(this.screenValue[this.screenValue.length - 1])) {
+        this.screenValue += event.target.innerText
+      }
     },
-    dividePressed: function() {
-      this.screenValue += "/"
+    dividePressed: function() { 
+      if(!"*/+-".includes(this.screenValue[this.screenValue.length - 1])) {
+        this.screenValue += "/"
+      }
     },
     clearPressed: function() {
       this.screenValue = ""
@@ -53,9 +57,7 @@ export default {
     equalPressed: function() {
       this.screenValue = `${eval(this.screenValue)}`
     },
-    // checkOperator: function() {
-
-    // }
+    
   }
 }
 
